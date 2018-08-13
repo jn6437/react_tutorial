@@ -1,3 +1,5 @@
+# REDUCER AND ACTION
+
 # ReduxSimpleStarter
 
 Interested in learning [Redux](https://www.udemy.com/react-redux/)?
@@ -39,3 +41,13 @@ Then reduer/index.js usees combineReduers to provide global application state
 
 redux generated state object that contaied books and mapped that state props to component.
 Because state got updated through the reducer, the component re-rendered
+
+**Action Creater**
+
+action will make change to application state
+
+**NOTE**
+
+Application state is different from component state
+component state = this.setstate (tutorial 1)
+application state = this.props.books (tutorial 2, this)
