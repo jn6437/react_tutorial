@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {} from "react-redux";
+import { connect } from "react-redux";
 
 export default class BookList extends Component {
   renderList() {
