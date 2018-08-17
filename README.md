@@ -29,3 +29,20 @@ Click [here](https://github.com/StephenGrider/ReactStarter/releases) then downlo
 ##Router
 
 webpage click link => invoke history(user changed URL) => invokes react router(here's the new URL) => invokes react(here's the components to render) => webpage DOM
+
+##COMMOM BUG WITH REACT ROUTER
+react router does loose match meaning if you have route '/' and '/hi' both condition will trigger if you do '/hi'
+put switch around it and most specific route at the top
+
+## redux form
+
+does the manual action creator binding for you.
+https://redux-form.com/7.1.2/examples/
+
+1.identify different pieces of form state
+2.make one field component per piece of sate
+3.user changes a field input
+4.Redux form automatically handles changes
+5.User submits a form
+6.We validate inputs and handle form submittal
+...essentially form component with its own state
