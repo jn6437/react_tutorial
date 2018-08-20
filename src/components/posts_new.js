@@ -1,17 +1,35 @@
 import React, { Component } from "react";
 //reduxForm function is very similar to connect
 import { Field, reduxForm } from "redux-form";
-
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createPost } from "../actions";
 class PostsNew extends Component {
   renderField(field) {
+    //destructuring
+    const {
+      meta: { touched, error }
+    } = field;
+    /*
+    const className = `form-group ${
+      field.meta.touched && field.meta.error ? "has-danger" : ""
+    }`;*/
+    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+
     return (
-      <div className="form-group">
+      <div className={className}>
         <label> {field.labelToShow} </label>
         {/*still responsible for making sure Field is responsible for this input
         https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-do
         dynamically inherit input property i.e a={this.props.a}*/}
         <input className="form-control" type="text" {...field.input} />
-        {field.meta.error}
+        {/* ternary expression -> expression ? if true : if false
+        check if the user has touched this input*/}
+        <div classNmae="text-help">
+          {touched ? error : ""}
+          {/*meta.touched ? meta.error : ""*/}
+          {/*field.meta.touched ? field.meta.error : ""*/}
+        </div>
       </div>
     );
   }
@@ -19,6 +37,7 @@ class PostsNew extends Component {
   onSubmit(values) {
     // this === component
     console.log(values);
+    this.props.createPost(values);
   }
   render() {
     //pull handleSubmit from redux submit, accessible by props as reduxForm connect function allows this function
@@ -48,6 +67,9 @@ class PostsNew extends Component {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        <Link to="/" className="btn btn-dange">
+          submit
+        </Link>
       </form>
     );
   }
@@ -70,8 +92,16 @@ function validate(values) {
 }
 
 //form: name of the form
+/*
 export default reduxForm({ validate: validate, form: "PostsNewForm" })(
   PostsNew
+);
+*/
+export default reduxForm({ validate: validate, form: "PostsNewForm" })(
+  connect(
+    null,
+    { createPost }
+  )(PostsNew)
 );
 
 /*

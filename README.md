@@ -46,3 +46,9 @@ https://redux-form.com/7.1.2/examples/
 5.User submits a form
 6.We validate inputs and handle form submittal
 ...essentially form component with its own state
+
+Pristine Touched Invalid
+
+pristine - how every input is rendered by default (no input has been selected)
+Touched - A user hasd done something in the field and is complete
+invalid - where we got some error message and we need to show the message to the user
