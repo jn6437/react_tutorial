@@ -15,6 +15,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
+        {/* order matters - specific route first*/}
         <Switch>
           <Route path="/posts/new" component={PostsNew} />
           <Route path="/" component={PostsIndex} />

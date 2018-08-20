@@ -4,6 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createPost } from "../actions";
+
 class PostsNew extends Component {
   renderField(field) {
     //destructuring
@@ -25,7 +26,7 @@ class PostsNew extends Component {
         <input className="form-control" type="text" {...field.input} />
         {/* ternary expression -> expression ? if true : if false
         check if the user has touched this input*/}
-        <div classNmae="text-help">
+        <div className="text-help">
           {touched ? error : ""}
           {/*meta.touched ? meta.error : ""*/}
           {/*field.meta.touched ? field.meta.error : ""*/}
@@ -36,9 +37,18 @@ class PostsNew extends Component {
 
   onSubmit(values) {
     // this === component
-    console.log(values);
-    this.props.createPost(values);
+
+    //this.props.createPost(values);
+    //parse callback function in the argument. action/index.js handles it by then() function
+    this.props.createPost(values, () => {
+      this.props.history.push("/");
+    });
+    /*
+    //this will navigate too fast
+    this.props.history.push("/");
+    */
   }
+
   render() {
     //pull handleSubmit from redux submit, accessible by props as reduxForm connect function allows this function
     //handleSubmit is going to run redux form side of things(i.e validate) and once its okay to be passed on,
@@ -67,8 +77,8 @@ class PostsNew extends Component {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
-        <Link to="/" className="btn btn-dange">
-          submit
+        <Link to="/" className="btn btn-danger">
+          Cancel
         </Link>
       </form>
     );
